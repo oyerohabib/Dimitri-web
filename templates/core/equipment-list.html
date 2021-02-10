@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Equipment List</h2>
+                        </div>
+                    </div>
+                </div>
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </a>
+                </div>
+                {% endfor %}
+                {% endif %} 
+                <div class="ecommerce-widget">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Equipment List</h5>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table first">
+                                        <thead class="bg-light">
+                                            <tr class="border-0">
+                                                <th class="border-0">No</th>
+                                                <th class="border-0">IFTA</th>
+                                                <th class="border-0">Date placed</th>
+                                                <th class="border-0">Truck</th>
+                                                <th class="border-0">Status</th>
+                                                <th class="border-0">Year</th>
+                                                <th class="border-0">Make</th>
+                                                <th class="border-0">Model</th>
+                                                <th class="border-0">GVWR</th>
+                                                <th class="border-0">VIN</th>
+                                                <th class="border-0">Plate No</th>
+                                                <th class="border-0">State</th>
+                                                <th class="border-0">Ownership</th>
+                                                <th class="border-0">ELD</th>
+                                                <th class="border-0"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if equipments_list %}
+                                            {% for equipment in equipments_list %}
+                                            <tr>
+                                                <td><a href="{% url 'editequipment' equipment.pk %}" class="btn btn-primary">{{forloop.counter}}</a></td>
+                                                <td>{{equipment.IFTA}}</td>
+                                                <td>{{equipment.Date_placed}}</td>
+                                                <td>{{equipment.Truck}}</td>
+                                                <td>
+                                                    {% if equipment.Status == "inactive" %}
+                                                        <span style="padding: 7px 7px;" class="alert alert-danger">INACTIVE</span>
+                                                    {% else %}
+                                                        <span style="padding: 7px 7px;" class="alert alert-success">SOLVED</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{equipment.Year}}</td>
+                                                <td>{{equipment.Make}}</td>
+                                                <td>{{equipment.Model}}</td>
+                                                <td>{{equipment.GVWR}}</td>
+                                                <td>{{equipment.VIN}}</td>
+                                                <td>{{equipment.License_Plate}}</td>
+                                                <td>{{equipment.License_Plate_State}}</td>
+                                                <td>
+                                                    {% if equipment.Leased_or_Owned == "leased" %}
+                                                        <span style="padding: 7px 7px;" class="alert alert-danger">LEASED</span>
+                                                    {% else %}
+                                                        <span style="padding: 7px 7px;" class="alert alert-success">OWNED</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{equipment.ELD}}</td>
+                                                <td><a href="{% url 'delete-equipment' equipment.pk %}"><i class="fas fa-trash"></i></a></td>
+                                            </tr>
+                                            {% endfor %}
+                                            {% else %}
+                                                <div class="text-center" style="font-size: 16px; font-weight: 600; color: #555; padding: 10px;">No Equipment Information to show</div>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

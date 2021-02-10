@@ -1,0 +1,285 @@
+{% extends 'core/base.html' %}
+{% load static %}
+<!-- LOAD cHARTJS LIBRARY -->
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+    // Driver Status
+    var config = {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [{{pending}},{{hired}},{{terminated}}],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+              ],
+          label: 'Population'
+        }],
+        labels: ['pending', 'hired', 'terminated']
+      },
+      options: {
+        responsive: true
+      }
+    };
+</script>
+<script>
+    // EVR STATUS
+    var config2 = {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [{{done}},{{partial}},{{not_started}}],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+              ],
+          label: ['EVR Status']
+        }],
+        labels: ['done', 'partial', 'not_started']
+      },
+      options: {
+        responsive: true
+      }
+    };
+</script>
+<script>
+    // EVR STATUS
+    var config3 = {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [{{active}},{{inactive}}],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+              ],
+          label: ['Equipment Status']
+        }],
+        labels: ['active', 'inactive']
+      },
+      options: {
+        responsive: true
+      }
+    };
+</script>
+<script>
+    // EVR STATUS
+    var config4 = {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [{{leased}},{{owned}}],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+              ],
+          label: ['Owner Status']
+        }],
+        labels: ['leased', 'owned']
+      },
+      options: {
+        responsive: true
+      }
+    };
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+     12
+      var ctx2 = document.getElementById('evr-status').getContext('2d');
+      window.myPie2 = new Chart(ctx2, config2);
+
+      var ctx3 = document.getElementById('equipment-status').getContext('2d');
+      window.myPie3 = new Chart(ctx3, config3);
+
+      var ctx4 = document.getElementById('owner-status').getContext('2d');
+      window.myPie4 = new Chart(ctx4, config4);
+    };
+</script>
+
+<div class="dashboard-wrapper">
+    <div class="dashboard-ecommerce">
+        <div class="container-fluid dashboard-content ">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-header">
+                        <h2 class="pageheader-title">Dashboard</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="ecommerce-widget">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">No of Drivers: {{drivers_list.count}}</h5>
+                                <div class="metric-value d-inline-block" style="margin-bottom: -20px!important;">
+                                    <h1 class="fs-20">Driver Status</h1>
+                                </div>
+                            </div>
+                            <canvas id="pie-chart" style="margin-bottom: 20px!important;"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">Driver</h5>
+                                <div class="metric-value d-inline-block" style="margin-bottom: -20px!important;">
+                                    <h1 class="fs-20">EVR Status</h1>
+                                </div>
+                            </div>
+                            <canvas id="evr-status" style="margin-bottom: 20px!important;"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">No of Equipments: {{equipments_list.count}}</h5>
+                                <div class="metric-value d-inline-block" style="margin-bottom: -20px!important;">
+                                    <h1 class="fs-20">Equipment Status</h1>
+                                </div>
+                            </div>
+                            <canvas id="equipment-status" style="margin-bottom: 20px!important;"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="text-muted">Equipment</h5>
+                                <div class="metric-value d-inline-block" style="margin-bottom: -20px!important;">
+                                    <h1 class="fs-20">Ownership Type</h1>
+                                </div>
+                            </div>
+                            <canvas id="owner-status" style="margin-bottom: 20px!important;"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Drivers List</h5>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="bg-light">
+                                            <tr class="border-0">
+                                                <th class="border-0">No</th>
+                                                <th class="border-0">Name</th>
+                                                <th class="border-0">Hire Date</th>
+                                                <th class="border-0">Term Date</th>
+                                                <th class="border-0">Status</th>
+                                                <th class="border-0">EVR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if drivers_list %}
+                                            {% for driver in drivers_list %}
+                                            <tr>
+                                                <td><a href="{% url 'editdriver' driver.pk %}" class="btn btn-primary">{{forloop.counter}}</a></td>
+                                                <td>{{driver.Name}}</td>
+                                                <td>{{driver.Hire_Date|date:"M d, Y"}}</td>
+                                                <td>{{driver.Term_Date|date:"M d, Y"}}</td>
+                                                <td>
+                                                    {% if driver.Status == "pending" %}
+                                                        <span style="padding: 7px 7px;" class="badge badge-pill badge-info">PENDING</span>
+                                                    {% elif driver.Status == "hired" %}
+                                                        <span style="padding: 7px 7px;" class="badge badge-pill badge-success">HIRED</span>
+                                                    {% else %}
+                                                        <span style="padding: 7px 7px;" class="badge badge-pill badge-danger">TERMINATED</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if driver.EVR == "not started" %}
+                                                        <span style="padding: 7px 7px;" class="badge badge-pill badge-info">NOT STARTED</span>
+                                                    {% elif driver.EVR == "done" %}
+                                                        <span style="padding: 7px 7px;" class="badge badge-pill badge-success">DONE</span>
+                                                    {% else %}
+                                                        <span style="padding: 7px 7px; font-size: 14px;" class="badge badge-pill badge-warning text-light">PARTIAL</span>
+                                                    {% endif %}
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                            {% else %}
+                                                <div class="text-center" style="font-size: 16px; font-weight: 600; color: #555; padding: 10px;">No Drivers Information to show</div>
+                                            {% endif %}
+                                            <tr>
+                                                <td colspan="9"><a href="{% url 'drivers-list' %}" class="btn btn-outline-light float-right">View Full Details</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Equipment List</h5>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="bg-light">
+                                            <tr class="border-0">
+                                                <th class="border-0">No</th>
+                                                <th class="border-0">IFTA</th>
+                                                <th class="border-0">Date placed</th>
+                                                <th class="border-0">Truck #</th>
+                                                <th class="border-0">Status</th>
+                                                <th class="border-0">Year</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if equipments_list %}
+                                            {% for equipment in equipments_list %}
+                                            <tr>
+                                                <td><a href="{% url 'editequipment' equipment.pk %}" class="btn btn-primary">{{forloop.counter}}</a></td>
+                                                <td>{{equipment.IFTA}}</td>
+                                                <td>{{equipment.Date_placed}}</td>
+                                                <td>{{equipment.Truck}}</td>
+                                                <td>
+                                                    {% if equipment.Status == "inactive" %}
+                                                        <span style="padding: 7px 7px;" class="alert alert-danger">INACTIVE</span>
+                                                    {% else %}
+                                                        <span style="padding: 7px 7px;" class="alert alert-success">SOLVED</span>
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{equipment.Year}}</td>
+                                            </tr>
+                                            {% endfor %}
+                                            {% else %}
+                                                <div class="text-center" style="font-size: 16px; font-weight: 600; color: #555; padding: 10px;">No Equipment Information to show</div>
+                                            {% endif %}
+                                            <tr>
+                                                <td colspan="9"><a href="{% url 'equipment-list' %}" class="btn btn-outline-light float-right">View Full Details</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Add New Equipment</h2>
+                        </div>
+                    </div>
+                </div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <a href="#" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% endif %} 
+                <div class="ecommerce-widget">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <h5 class="card-header">Add New Equipment</h5>
+                            <div class="card-body">
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{form|crispy}}
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

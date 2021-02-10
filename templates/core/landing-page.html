@@ -1,0 +1,129 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style type="text/css">
+        /* body {
+    background: #9c66ed !important; 
+} */
+
+h1, h6, h5, nav {
+    color: rgb(6, 130, 255) !important; 
+}
+
+/* div {
+    margin: 6rem;
+} */
+
+#mar1 {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+}
+
+#kitty {
+    width: 40%;
+    height: 20%;
+    margin-top: -5%;
+}
+
+#bg1 {
+    width: 30%;
+    height: 30%;
+}
+
+#donate{
+    margin-left: 1rem;
+}
+
+#mar2 {
+    margin-left: 20%;
+}
+
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>DatabaseKitty</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Database Kitty</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">How Do I Work?</a>
+                </li>
+            </ul>
+            <ul class="nav-item navbar-nav justify-content-end ">
+                <a class="nav-link" href="https://chaplife.cod.edu/organization/computerscienceclub">Who Made Me?</a>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between">
+                <div class="container align-self-center">
+                    <div id="mar1" class="d-flex justify-content-center" >
+                        <h1 class="align-middle">Hello, I am Database Kitty!</h1>
+                    </div>
+                    <div id="mar1" class="d-flex justify-content-center">
+                        <h5 class="align-middle">Hmm.. Keep your Driver & Equipment Lists Purrfect.</h1>
+                    </div>
+                    <div id="mar1" class="d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary"><a href="{% url 'login' %}" class="text-light" style="text-decoration: none;">Log In</a></button>
+                    </div>
+                </div>
+            <img id="kitty" src="{% static 'images/cat/BlueCat1.png' %}" class="p-2 align-self-end my-flex-item">
+        </div>
+    </div>
+
+    <div id="mar1" class="container-fluid">
+        <div class="d-flex justify-content-around">
+            <img id="kitty" src="{% static 'images/cat/BlueCat3v2.png' %}" class="justify-content-around">
+            <div class="container align-self-center" id="mar2">
+                <h1 class="align-middle">Who Made Me?</h1>
+                <h6 class="align-middle">Purr.. Ohh..</h6>
+                <h6 class="align-middle">People who are in this industry</h6>
+                <h5 class="align-middle">and code</h5>
+                <div id="mar1" class="d-flex">
+                    <button type="button" class="btn btn-primary">Learn More</button>
+                    <button type="button" class="btn btn-info" id="donate"><a href="{% url 'register' %}" class="text-light" style="text-decoration: none;">Sign up</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div id="mar1" class="container-fluid">
+        <div class="d-flex justify-content-around">
+            <div class="container align-self-center" id="mar2">
+                <h1 class="align-middle">How do i work?</h1>
+                <h6 class="align-middle">Hmm.. Well..</h6>
+                <h6 class="align-middle">We have created and easy to follow and fill</h6>
+                <h5 class="align-middle">Database and Managment System</h5>
+                <div id="mar1" class="d-flex">
+                    <button type="button" class="btn btn-primary">Learn More</button>
+                </div>
+            </div>
+            <img id="kitty" src="{% static 'images/cat/BlueCat2.png' %}" class="justify-content-around">
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
